@@ -1,14 +1,8 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { memo } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  FavoriteStack,
-  HomeStack,
-  NotificationStack,
-  OrderStack,
-  ProfileStack,
-} from "../Stacks";
 import { icons } from "../../../assets/icons";
+import { CustomerFavoriteStack, CustomerHomeStack, CustomerNotificationStack, CustomerProfileStack, OrderStack } from "../Stacks";
 
 const Tabs = createBottomTabNavigator();
 
@@ -43,7 +37,7 @@ const CustomerAppTabs = () => {
             ),
         }}
         name="Explore"
-        component={HomeStack}
+        component={CustomerHomeStack}
       />
       <Tabs.Screen
         options={{
@@ -64,7 +58,7 @@ const CustomerAppTabs = () => {
             ),
         }}
         name="Favorite"
-        component={FavoriteStack}
+        component={CustomerFavoriteStack}
       />
       <Tabs.Screen
         options={{
@@ -106,7 +100,7 @@ const CustomerAppTabs = () => {
             ),
         }}
         name="notification"
-        component={NotificationStack}
+        component={CustomerNotificationStack}
       />
       <Tabs.Screen
         options={{
@@ -127,12 +121,12 @@ const CustomerAppTabs = () => {
             ),
         }}
         name="profile"
-        component={ProfileStack}
+        component={CustomerProfileStack}
       />
     </Tabs.Navigator>
   );
 };
 
-export default CustomerAppTabs;
+export default memo(CustomerAppTabs);
 
 const styles = StyleSheet.create({});

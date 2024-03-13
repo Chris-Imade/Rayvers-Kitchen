@@ -8,12 +8,16 @@ import {
   View,
 } from "react-native";
 import React, { memo } from "react";
-import { images } from "../../../assets/images";
-import { SCREEN_HEIGHT, SCREEN_WIDTH, colors } from "../../components/DEFAULTS";
-import { icons } from "../../../assets/icons";
+import { images } from "../../../../assets/images";
+import {
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  colors,
+} from "../../../components/DEFAULTS";
+import { icons } from "../../../../assets/icons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import { setUserType } from "../../Redux/Splice/AppSplice";
+import { setUserType } from "../../../Redux/Splice/AppSplice";
 
 enum USER_TYPE {
   CUSTOMER = "Customer",

@@ -1,13 +1,11 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React, { memo } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-    ChefNotificationStack, ChefProfileStack,
-} from "../Stacks";
 import { icons } from "../../../assets/icons";
 import ChefHomeStack from "../Stacks/ChefStacks/ChefHomeStack";
 import ChefListStack from "../Stacks/ChefStacks/ChefListStack";
 import CreateItemStack from "../Stacks/ChefStacks/CreateItemStack";
+import { ChefNotificationStack, ChefProfileStack } from "../Stacks";
 
 const Tabs = createBottomTabNavigator();
 
@@ -86,7 +84,7 @@ const ChefAppTab = () => {
         name="CreateItems"
         component={CreateItemStack}
       />
-       <Tabs.Screen
+      <Tabs.Screen
         options={{
           headerShown: false,
           tabBarIcon: ({ color, focused, size }) =>
@@ -107,7 +105,7 @@ const ChefAppTab = () => {
         name="NotificationStack"
         component={ChefNotificationStack}
       />
-       <Tabs.Screen
+      <Tabs.Screen
         options={{
           headerShown: false,
           tabBarIcon: ({ color, focused, size }) =>

@@ -1,8 +1,9 @@
+// Customer Screens
 export { default as Onboard } from "./Onboarding/Onboard";
-export { default as Login } from "./Authentication/Login";
-export { default as Register } from "./Authentication/Register";
-export { default as ForgotPass } from "./Authentication/ForgotPass";
-export { default as VerifyCode } from "./Authentication/VerifyCode";
+export { default as CustomerLogin } from "./Customer/Authentication/Login";
+export { default as Register } from "./Customer/Authentication/Register";
+export { default as ForgotPass } from "./Customer/Authentication/ForgotPass";
+export { default as VerifyCode } from "./Customer/Authentication/VerifyCode";
 export { default as Location } from "./Location";
 export { default as CustomerHome } from "./Customer/Home/Home";
 export { default as CustomerSearch } from "./Customer/Search/Search";
@@ -25,14 +26,19 @@ export { default as EditProfile } from "./Customer/Profile/EditProfile";
 export { default as Address } from "./Customer/Profile/Address";
 export { default as AddNewAddress } from "./Customer/Profile/AddNewAddress";
 export { default as Favorite } from "./Customer/Profile/Favorite";
-export { default as RouteSelection } from "./Authentication/RouteSelection";
+// Chef Screens
+export { default as RouteSelection } from "./Customer/Authentication/RouteSelection";
 export { default as ChefLogin } from "./Chef/Authentication/Login";
 export { default as ChefHome } from "./Chef/Home";
 export { default as FoodList } from "./Chef/FoodList";
 export { default as AddNewFood } from "./Chef/AddNewFood";
 export { default as ChefProfile } from "./Chef/Profile";
-export { default as WithdrawSuccess } from './Chef/WithdrawSuccess';
+export { default as WithdrawSuccess } from "./Chef/WithdrawSuccess";
 export { default as Notification } from "./Chef/Notifications";
 export { default as ChefReviews } from "./Chef/Reviews";
 export { default as ChefDriversList } from "./Chef/DriversList";
 export { default as ChefFoodDetails } from "./Chef/FoodDetails";
+// Driver Screens
+export { default as DriverDashboard } from "./Driver/Dashboard";
+export { default as DriverMessages } from "./Driver/Messages";
+export { default as DriverLogin } from "./Driver/Authentication/Login";
