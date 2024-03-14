@@ -7,9 +7,9 @@ export { default as ChefProfileStack } from "./ChefStacks/ProfileStack";
 export { default as ChefAuthStack } from "./ChefStacks/Authentication/AuthStack";
 // Customer Stacks
 export { default as CustomerAuthStack } from "./CustomerStacks/Authentication/AuthStack";
-export { default as  CustomerFavoriteStack } from "./CustomerStacks/Favourite";
+export { default as CustomerFavoriteStack } from "./CustomerStacks/Favourite";
 export { default as CustomerHomeStack } from "./CustomerStacks/HomeStack";
-export { default as CustomerNotificationStack } from "./CustomerStacks/Notification";
+export { default as CustomerNotificationStack } from "./CustomerStacks/MessageStack";
 export { default as OrderStack } from "./CustomerStacks/Orders";
 export { default as CustomerProfileStack } from "./CustomerStacks/Profile";
 export { default as FavoriteStack } from "./CustomerStacks/Favourite";

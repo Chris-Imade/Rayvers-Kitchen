@@ -1,18 +1,20 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Messages from "../../../screens/Driver/Messages";
+import { DriverMessages, TrackMsg } from "../../../screens";
 
-const RootMessageStack = createNativeStackNavigator();
+const DriverMessageStack = createNativeStackNavigator();
 
 const MessageStack = () => {
   return (
-    <RootMessageStack.Navigator
-      initialRouteName="Message"
+    <DriverMessageStack.Navigator
+      initialRouteName="DriverProfile"
       screenOptions={{ headerShown: false }}
     >
-      <RootMessageStack.Screen name="Message" component={Messages} />
-    </RootMessageStack.Navigator>
+      <DriverMessageStack.Screen name="DriverMessages" component={DriverMessages} />
+      {/* @ts-ignore */}
+      <DriverMessageStack.Screen name="TrackMsg" component={TrackMsg} />
+    </DriverMessageStack.Navigator>
   );
 };
 

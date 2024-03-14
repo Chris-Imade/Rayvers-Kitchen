@@ -3,6 +3,7 @@ import React, { memo } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { icons } from "../../../assets/icons";
 import { CustomerFavoriteStack, CustomerHomeStack, CustomerNotificationStack, CustomerProfileStack, OrderStack } from "../Stacks";
+import MessageStack from "../Stacks/CustomerStacks/MessageStack";
 
 const Tabs = createBottomTabNavigator();
 
@@ -57,7 +58,7 @@ const CustomerAppTabs = () => {
               />
             ),
         }}
-        name="Favorite"
+        name="CustomerFavoriteStack"
         component={CustomerFavoriteStack}
       />
       <Tabs.Screen
@@ -78,7 +79,7 @@ const CustomerAppTabs = () => {
               />
             ),
         }}
-        name="Order"
+        name="OrderStack"
         component={OrderStack}
       />
       <Tabs.Screen
@@ -87,20 +88,20 @@ const CustomerAppTabs = () => {
           tabBarIcon: ({ color, focused, size }) =>
             focused ? (
               <Image
-                source={icons.notificationFilled}
+                source={icons.messageActive}
                 style={{ width: 23, height: 23 }}
                 resizeMode="contain"
               />
             ) : (
               <Image
-                source={icons.notificationOutlined}
+                source={icons.messageInactive}
                 style={{ width: 25, height: 25 }}
                 resizeMode="contain"
               />
             ),
         }}
-        name="notification"
-        component={CustomerNotificationStack}
+        name="MessageStack"
+        component={MessageStack}
       />
       <Tabs.Screen
         options={{
@@ -120,7 +121,7 @@ const CustomerAppTabs = () => {
               />
             ),
         }}
-        name="profile"
+        name="CustomerProfileStack"
         component={CustomerProfileStack}
       />
     </Tabs.Navigator>

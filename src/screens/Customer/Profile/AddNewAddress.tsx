@@ -426,6 +426,8 @@ const AddNewAddress: React.FC<AddNewAddressProps> = ({ route }) => {
             <Spinner color={colors.white} size="lg" />
           </View>
         )}
+
+        <View style={{ height: 300, width: SCREEN_WIDTH - 48 }} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -15,10 +15,25 @@ import { icons } from "../../../assets/icons";
 import { SCREEN_WIDTH, colors } from "../../components/DEFAULTS";
 import { ChefChart, RunningOrdersCard } from "../../components";
 import { Actionsheet, useDisclose } from "native-base";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
-const Home = () => {
+type RootParamList = {
+  // ... your routes here
+};
+
+type NavigationProp = DrawerNavigationProp<RootParamList>;
+
+type Props = {
+  navigation: NavigationProp;
+};
+
+const Home: React.FC<Props> = ({ navigation }) => {
   const { isOpen, onOpen, onClose } = useDisclose();
-  const { isOpen: isOpenOrder, onOpen: onOpenOrder, onClose: onCloseOrder } = useDisclose();
+  const {
+    isOpen: isOpenOrder,
+    onOpen: onOpenOrder,
+    onClose: onCloseOrder,
+  } = useDisclose();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F7F8F9" }}>
@@ -59,13 +74,15 @@ const Home = () => {
               </View>
             </Pressable>
 
-            <Image
-              source={images.myProfile}
-              style={{
-                width: 45,
-                height: 45,
-              }}
-            />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Image
+                source={images.myProfile}
+                style={{
+                  width: 45,
+                  height: 45,
+                }}
+              />
+            </Pressable>
           </View>
         </View>
 
@@ -441,14 +458,22 @@ const Home = () => {
         {/* Running Order */}
         <View>
           <Actionsheet isOpen={isOpen} onClose={onClose}>
-            <Actionsheet.Content style={{  }}>
-              <View style={{ width: '100%', paddingHorizontal: 24 }}>
-                <Text style={{ color: '#181C2E', fontSize: 17, fontFamily: 'Regular-Sen' }}>20 Running Orders</Text>
+            <Actionsheet.Content style={{}}>
+              <View style={{ width: "100%", paddingHorizontal: 24 }}>
+                <Text
+                  style={{
+                    color: "#181C2E",
+                    fontSize: 17,
+                    fontFamily: "Regular-Sen",
+                  }}
+                >
+                  20 Running Orders
+                </Text>
 
-                <RunningOrdersCard type={'orders'} />
-                <RunningOrdersCard type={'orders'} />
-                <RunningOrdersCard type={'orders'} />
-                <RunningOrdersCard type={'orders'} />
+                <RunningOrdersCard type={"orders"} />
+                <RunningOrdersCard type={"orders"} />
+                <RunningOrdersCard type={"orders"} />
+                <RunningOrdersCard type={"orders"} />
               </View>
             </Actionsheet.Content>
           </Actionsheet>
@@ -456,14 +481,22 @@ const Home = () => {
         {/* Running Order */}
         <View>
           <Actionsheet isOpen={isOpenOrder} onClose={onCloseOrder}>
-            <Actionsheet.Content style={{  }}>
-              <View style={{ width: '100%', paddingHorizontal: 24 }}>
-                <Text style={{ color: '#181C2E', fontSize: 17, fontFamily: 'Regular-Sen' }}>05 Order Request</Text>
+            <Actionsheet.Content style={{}}>
+              <View style={{ width: "100%", paddingHorizontal: 24 }}>
+                <Text
+                  style={{
+                    color: "#181C2E",
+                    fontSize: 17,
+                    fontFamily: "Regular-Sen",
+                  }}
+                >
+                  05 Order Request
+                </Text>
 
-                <RunningOrdersCard type={'requests'} />
-                <RunningOrdersCard type={'requests'} />
-                <RunningOrdersCard type={'requests'} />
-                <RunningOrdersCard type={'requests'} />
+                <RunningOrdersCard type={"requests"} />
+                <RunningOrdersCard type={"requests"} />
+                <RunningOrdersCard type={"requests"} />
+                <RunningOrdersCard type={"requests"} />
               </View>
             </Actionsheet.Content>
           </Actionsheet>

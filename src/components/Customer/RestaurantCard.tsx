@@ -11,6 +11,7 @@ import { images } from "../../../assets/images";
 import { icons } from "../../../assets/icons";
 import { useNavigation } from "@react-navigation/native";
 import { RestaurantCardProp } from "../../../type";
+import { truncTxt } from "../../utils/truncate";
 
 const RestaurantCard: React.FC<RestaurantCardProp> = ({ restaurant }) => {
   const navigation = useNavigation();
@@ -19,8 +20,8 @@ const RestaurantCard: React.FC<RestaurantCardProp> = ({ restaurant }) => {
 
   return (
     <Pressable
+    onPress={() =>
       // @ts-ignore
-      onPress={() =>
         navigation.navigate("RestaurantDetails", { data: restaurant })
       }
       style={{
@@ -75,7 +76,7 @@ const RestaurantCard: React.FC<RestaurantCardProp> = ({ restaurant }) => {
           marginBottom: 5,
         }}
       >
-        {restaurant?.desc}
+        {truncTxt(restaurant?.description, 100)}
       </Text>
 
       <View style={{ flexDirection: "row", marginTop: 17 }}>

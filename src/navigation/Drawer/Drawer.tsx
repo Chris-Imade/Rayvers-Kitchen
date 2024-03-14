@@ -15,7 +15,7 @@ import {
 import Profile from "../Stacks/CustomerStacks/Profile";
 import Favourite from "../Stacks/CustomerStacks/Favourite";
 import Orders from "../Stacks/CustomerStacks/Orders";
-import Notification from "../Stacks/CustomerStacks/Notification";
+import Notification from "../Stacks/CustomerStacks/MessageStack";
 import { useNavigation } from "@react-navigation/native";
 import { BASE_URL, SCREEN_HEIGHT, colors } from "../../components/DEFAULTS";
 import { images } from "../../../assets/images";
@@ -29,6 +29,8 @@ import {
   resetCart,
   setAccessToken,
   setUserAddress,
+  setUserProfile,
+  setUserType,
 } from "../../Redux/Splice/AppSplice";
 import { Location } from "../../screens";
 import { userAddress } from "../../../type";
@@ -41,9 +43,13 @@ const CustomDrawerContent = (props) => {
   const [ordersFocus, setOrdersFocus] = useState<boolean>(false);
   const [notification, setNotification] = useState<boolean>(false);
   const [message, setMessage] = useState<boolean>(false);
+  const [dashboard, setDashboard] = useState<boolean>(false);
+  const [list, setList] = useState<boolean>(false);
+  const [addItems, setAddItems] = useState<boolean>(false);
 
   const token = useSelector((state: RootState) => state.data.token);
   const userProfile = useSelector((state: RootState) => state.data.userProfile);
+  const userType = useSelector((state: RootState) => state.data.userType);
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -120,6 +126,7 @@ const CustomDrawerContent = (props) => {
                 color: "#979797",
                 fontSize: 14,
                 fontFamily: "Regular-Sen",
+                maxWidth: 150,
               }}
             >
               {userProfile?.bio
@@ -128,213 +135,486 @@ const CustomDrawerContent = (props) => {
             </Text>
           </View>
         </View>
-        {/* Profile Route */}
-        <Pressable
-          // @ts-ignore
-          onPress={() => navigation.navigate("Profile")}
-          onPressIn={() => setProfileFocus(true)}
-          onPressOut={() => setProfileFocus(false)}
-          style={{
-            backgroundColor: profileFocus ? "#EEFFFF" : colors.white,
-            marginBottom: 33,
-            paddingHorizontal: 5,
-            paddingVertical: 10,
-            borderRadius: 6,
-            width: "100%",
-            marginTop: 55,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={icons.drawerUser}
-              style={{
-                width: 23,
-                height: 23,
-                marginRight: 14,
-              }}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "Regular-Sen",
-                color: colors.tertiaryTxt,
-              }}
-            >
-              My Profile
-            </Text>
-          </View>
-        </Pressable>
-        <Pressable
-          // @ts-ignore
-          onPress={() => navigation.navigate("Favorite")}
-          onPressIn={() => setFavoriteFocus(true)}
-          onPressOut={() => setFavoriteFocus(false)}
-          style={{
-            backgroundColor: favoriteFocus ? "#EEFFFF" : colors.white,
-            marginBottom: 33,
-            paddingHorizontal: 5,
-            paddingVertical: 10,
-            borderRadius: 6,
-            width: "100%",
-            marginTop: 20,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={icons.drawerHeart}
-              style={{
-                width: 23,
-                height: 23,
-                marginRight: 14,
-              }}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "Regular-Sen",
-                color: colors.tertiaryTxt,
-              }}
-            >
-              Favorite
-            </Text>
-          </View>
-        </Pressable>
-        <Pressable
-          // @ts-ignore
-          onPress={() => navigation.navigate("Order")}
-          onPressIn={() => setOrdersFocus(true)}
-          onPressOut={() => setOrdersFocus(false)}
-          style={{
-            backgroundColor: ordersFocus ? "#EEFFFF" : colors.white,
-            marginBottom: 33,
-            paddingHorizontal: 5,
-            paddingVertical: 10,
-            borderRadius: 6,
-            width: "100%",
-            marginTop: 20,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={icons.drawerCar}
-              style={{
-                width: 27,
-                height: 27,
-                marginRight: 14,
-              }}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "Regular-Sen",
-                color: colors.tertiaryTxt,
-              }}
-            >
-              Orders
-            </Text>
-          </View>
-        </Pressable>
-        <Pressable
-          // @ts-ignore
-          onPress={() => navigation.navigate("Notification")}
-          onPressIn={() => setNotification(true)}
-          onPressOut={() => setNotification(false)}
-          style={{
-            backgroundColor: notification ? "#EEFFFF" : colors.white,
-            marginBottom: 33,
-            paddingHorizontal: 5,
-            paddingVertical: 10,
-            borderRadius: 6,
-            width: "100%",
-            marginTop: 20,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={icons.drawerBell}
-              style={{
-                width: 27,
-                height: 27,
-                marginRight: 14,
-              }}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "Regular-Sen",
-                color: colors.tertiaryTxt,
-              }}
-            >
-              Notification
-            </Text>
-          </View>
-        </Pressable>
-        <Pressable
-          // @ts-ignore
-          onPress={() => navigation.navigate("Notification", { tabState: 1 })}
-          onPressIn={() => setMessage(true)}
-          onPressOut={() => setMessage(false)}
-          style={{
-            backgroundColor: message ? "#EEFFFF" : colors.white,
-            marginBottom: 33,
-            paddingHorizontal: 5,
-            paddingVertical: 10,
-            borderRadius: 6,
-            width: "100%",
-            marginTop: 20,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              source={icons.message}
-              style={{
-                width: 27,
-                height: 27,
-                marginRight: 14,
-              }}
-              resizeMode="contain"
-            />
-            <Text
-              style={{
-                fontSize: 16,
-                fontFamily: "Regular-Sen",
-                color: colors.tertiaryTxt,
-              }}
-            >
-              Messages
-            </Text>
-          </View>
-        </Pressable>
 
+        {/* Chef Additions */}
+        {userType === "Chef" && (
+          <>
+            <Pressable
+              // @ts-ignore
+              onPress={() => navigation.navigate("ChefHomeStack")}
+              onPressIn={() => setDashboard(true)}
+              onPressOut={() => setDashboard(false)}
+              style={{
+                backgroundColor: dashboard ? "#EEFFFF" : colors.white,
+                // marginBottom: 33,
+                paddingHorizontal: 5,
+                paddingVertical: 10,
+                borderRadius: 6,
+                width: "100%",
+                marginTop: 55,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={icons.dashboardDark}
+                  style={{
+                    width: 23,
+                    height: 23,
+                    marginRight: 14,
+                  }}
+                  resizeMode="contain"
+                />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: "Regular-Sen",
+                    color: colors.tertiaryTxt,
+                  }}
+                >
+                  Dashboard
+                </Text>
+              </View>
+            </Pressable>
+            <Pressable
+              // @ts-ignore
+              onPress={() => navigation.navigate("ChefListStack")}
+              onPressIn={() => setList(true)}
+              onPressOut={() => setList(false)}
+              style={{
+                backgroundColor: list ? "#EEFFFF" : colors.white,
+                marginBottom: 20,
+                paddingHorizontal: 5,
+                paddingVertical: 10,
+                borderRadius: 6,
+                width: "100%",
+                // marginTop: 55,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={icons.listDark}
+                  style={{
+                    width: 23,
+                    height: 23,
+                    marginRight: 14,
+                  }}
+                  resizeMode="contain"
+                />
+                <Text
+                  style={{
+                    fontSize: 16,
+                    fontFamily: "Regular-Sen",
+                    color: colors.tertiaryTxt,
+                  }}
+                >
+                  My Food List
+                </Text>
+              </View>
+            </Pressable>
+          </>
+        )}
+
+        {userType === "Chef" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("CreateItems")}
+            onPressIn={() => setAddItems(true)}
+            onPressOut={() => setAddItems(false)}
+            style={{
+              backgroundColor: addItems ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 55,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.createItems}
+                style={{
+                  width: 23,
+                  height: 23,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Create Items
+              </Text>
+            </View>
+          </Pressable>
+        )}
+
+        {/* Profile Route */}
+        {userType === "Customer" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("Explore")}
+            onPressIn={() => setDashboard(true)}
+            onPressOut={() => setDashboard(false)}
+            style={{
+              backgroundColor: dashboard ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              marginTop: 55,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.homeDark}
+                style={{
+                  width: 23,
+                  height: 23,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Home
+              </Text>
+            </View>
+          </Pressable>
+        )}
+        {userType === "Customer" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("CustomerProfileStack")}
+            onPressIn={() => setProfileFocus(true)}
+            onPressOut={() => setProfileFocus(false)}
+            style={{
+              backgroundColor: profileFocus ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 55,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.drawerUser}
+                style={{
+                  width: 23,
+                  height: 23,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                My Profile
+              </Text>
+            </View>
+          </Pressable>
+        )}
+
+        {userType === "Customer" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("CustomerFavoriteStack")}
+            onPressIn={() => setFavoriteFocus(true)}
+            onPressOut={() => setFavoriteFocus(false)}
+            style={{
+              backgroundColor: favoriteFocus ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 20,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.drawerHeart}
+                style={{
+                  width: 23,
+                  height: 23,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Favorite
+              </Text>
+            </View>
+          </Pressable>
+        )}
+        {userType === "Customer" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("OrderStack")}
+            onPressIn={() => setOrdersFocus(true)}
+            onPressOut={() => setOrdersFocus(false)}
+            style={{
+              backgroundColor: ordersFocus ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 20,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.drawerCar}
+                style={{
+                  width: 27,
+                  height: 27,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Orders
+              </Text>
+            </View>
+          </Pressable>
+        )}
+        {(userType === "Customer" || userType === "Chef") && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("MessageStack")}
+            onPressIn={() => setMessage(true)}
+            onPressOut={() => setMessage(false)}
+            style={{
+              backgroundColor: message ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 20,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.msgsDark}
+                style={{
+                  width: 27,
+                  height: 27,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Messages
+              </Text>
+            </View>
+          </Pressable>
+        )}
+
+        {userType === "Driver" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("DashboardStack")}
+            onPressIn={() => setDashboard(true)}
+            onPressOut={() => setDashboard(false)}
+            style={{
+              backgroundColor: dashboard ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              marginTop: 55,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.dashboardDark}
+                style={{
+                  width: 27,
+                  height: 27,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Dashboard
+              </Text>
+            </View>
+          </Pressable>
+        )}
+        {userType === "Driver" && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("MessageStack")}
+            onPressIn={() => setMessage(true)}
+            onPressOut={() => setMessage(false)}
+            style={{
+              backgroundColor: message ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 20,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.message}
+                style={{
+                  width: 27,
+                  height: 27,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                Messages
+              </Text>
+            </View>
+          </Pressable>
+        )}
+        {(userType === "Chef" || userType === "Driver") && (
+          <Pressable
+            // @ts-ignore
+            onPress={() => navigation.navigate("ProfileStack")}
+            onPressIn={() => setProfileFocus(true)}
+            onPressOut={() => setProfileFocus(false)}
+            style={{
+              backgroundColor: profileFocus ? "#EEFFFF" : colors.white,
+              marginBottom: 20,
+              paddingHorizontal: 5,
+              paddingVertical: 10,
+              borderRadius: 6,
+              width: "100%",
+              // marginTop: 55,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                source={icons.drawerUser}
+                style={{
+                  width: 23,
+                  height: 23,
+                  marginRight: 14,
+                }}
+                resizeMode="contain"
+              />
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontFamily: "Regular-Sen",
+                  color: colors.tertiaryTxt,
+                }}
+              >
+                My Profile
+              </Text>
+            </View>
+          </Pressable>
+        )}
         {/* Logout */}
         <Pressable
           onPress={() => {
@@ -343,6 +623,9 @@ const CustomDrawerContent = (props) => {
             dispatch(setAccessToken(null));
             dispatch(setUserAddress(null));
             dispatch(resetCart());
+            dispatch(setUserType(null));
+            dispatch(setUserProfile(null));
+            dispatch(setUserAddress(null));
           }}
           style={{
             position: "absolute",
@@ -397,7 +680,7 @@ const DrawerNavigation = (props) => {
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       initialRouteName={
-        (!address || address === null)
+        !address || address === null
           ? "Location"
           : userType === "Customer"
           ? "AppTabs"

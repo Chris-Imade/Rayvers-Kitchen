@@ -21,7 +21,7 @@ import {
 import { icons } from "../../../../assets/icons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { setAccessToken } from "../../../Redux/Splice/AppSplice";
+import { setAccessToken, setUserId } from "../../../Redux/Splice/AppSplice";
 import { Button, TextInputs } from "../../../components";
 import { Spinner } from "native-base";
 import { RootState } from "../../../Redux/store";
@@ -50,7 +50,7 @@ const Login = () => {
     //       "Content-Type": "application/json",
     //     },
     //     body: JSON.stringify({
-    //       kitchenId,
+    //       kitchen_id: kitchenId,
     //       password,
     //     }),
     //   });
@@ -60,24 +60,31 @@ const Login = () => {
     //     setError(null);
     //     try {
     //       const result = await response.json();
-    //       if (result.status === 200 && result.token) {
-    //         const { token } = result;
-    //         console.log("result: ", result);
-    //         dispatch(setAccessToken(token));
-    //       }
+    //       // console.log(result.token);
+    //       const { token, user_id, kitchen_id } = result;
+    //       console.log("result: ", result);
+    //       dispatch(setAccessToken(token));
+    //       dispatch(setUserId(user_id));
     //     } catch (error: any) {
     //       console.log(`Error: ${error.message}`);
     //     }
     //   } else {
-    //     setLoading(false);
-    //     const result = response.json();
-    //     console.log(`Error: ${result}`);
-    //     setError(`Error: Something went wrong ☹️`);
+    //     try {
+    //       setLoading(false);
+    //       const errorResponse = await response.json();
+    //       console.log("Error response:", errorResponse); // Log the error response object for debugging purposes
+    //       setError(
+    //         `Error: ${errorResponse.message || "Something went wrong ☹️"}`
+    //       ); // Assuming there's a message property in the error response
+    //     } catch (error) {
+    //       console.log("Error parsing error response:", error);
+    //       setError("Error: Something went wrong ☹️");
+    //     }
     //   }
     // } catch (error: any) {
     //   setLoading(false);
     //   console.log(`Error: ${error.message}`);
-    //   setError(`Error: ${error.message}`)
+    //   setError(`Error: ${error.message}`);
     // }
   };
 

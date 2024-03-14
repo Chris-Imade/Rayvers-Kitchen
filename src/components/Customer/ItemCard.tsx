@@ -41,7 +41,7 @@ const ItemCard: React.FC<ItemCardProp> = ({ item }) => {
     <Pressable
       // @ts-ignore
       onPress={() => navigation.navigate("FoodDetails", { data: item })}
-      style={{ alignItems: "center", width: 153, marginBottom: 21 }}
+      style={{ alignItems: "center", width: 133, marginBottom: 21 }}
     >
       <Image
         source={{ uri: item?.images?.[0]?.file }}

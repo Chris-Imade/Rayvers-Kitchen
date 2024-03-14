@@ -85,7 +85,10 @@ const Login = () => {
           setError(`Login Error: ${error.message}`);
         }
       }
-    } catch (error) {}
+    } catch (error: any) {
+      console.log(`Error: ${error.message}`);
+      setError(`Login Error: ${error.message}`);
+    }
   };
 
   const updateProfile = async (token: string) => {
@@ -252,71 +255,6 @@ const Login = () => {
               </Text>
             </Text>
           </View>
-
-          {/* Or Demarcator */}
-          {/* <View
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              paddingTop: 27,
-              paddingBottom: 15,
-            }}
-          >
-            <Text
-              style={{
-                color: colors.secondaryTxt,
-                fontFamily: "Regular-Sen",
-                fontSize: 16,
-                fontStyle: "normal",
-                fontWeight: "400",
-              }}
-            >
-              Or
-            </Text>
-          </View> */}
-
-          {/* Social Icons */}
-          {/* <View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-            >
-              <Pressable onPress={() => alert("Implement Facebook login")}>
-                <Image
-                  source={icons.facebook}
-                  style={{
-                    width: 62,
-                    height: 62,
-                  }}
-                  resizeMode="contain"
-                />
-              </Pressable>
-              <Pressable onPress={() => alert("Implement X login")}>
-                <Image
-                  source={icons.x}
-                  style={{
-                    width: 62,
-                    height: 62,
-                  }}
-                  resizeMode="contain"
-                />
-              </Pressable>
-              <Pressable onPress={() => alert("Implement Apple login")}>
-                <Image
-                  source={icons.apple}
-                  style={{
-                    width: 62,
-                    height: 62,
-                  }}
-                  resizeMode="contain"
-                />
-              </Pressable>
-            </View>
-          </View> */}
         </View>
 
         {loading && (

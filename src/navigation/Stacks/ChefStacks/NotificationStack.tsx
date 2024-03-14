@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FoodList } from "../../../screens";
-import Notifications from "../../../screens/Chef/Notifications";
+import Notifications from "../../../screens/Message";
 
 const RootNotificationStack = createNativeStackNavigator();
 
@@ -12,7 +12,10 @@ const NotificationStack = () => {
       initialRouteName="ChefHome"
       screenOptions={{ headerShown: false }}
     >
-      <RootNotificationStack.Screen name="Notification" component={Notifications} />
+      <RootNotificationStack.Screen
+        name="Notification"
+        component={Notifications}
+      />
     </RootNotificationStack.Navigator>
   );
 };

@@ -8,32 +8,18 @@ import {
   View,
 } from "react-native";
 import React, { memo, useEffect, useLayoutEffect, useState } from "react";
-import { icons } from "../../../assets/icons";
-import { SCREEN_WIDTH, colors } from "../../components/DEFAULTS";
-import NotificationsTabs from "../../components/Chef/NotificationsTabs";
-import Notifies from "../../components/Chef/Notifies";
-import Messages from "../../components/Chef/Messages";
+import { icons } from "../../assets/icons";
+import { SCREEN_WIDTH, colors } from "../components/DEFAULTS";
+import NotificationsTabs from "../components/Customer/NotificationsTabs";
+import Messages from "../components/Messages";
 import { useNavigation } from "@react-navigation/native";
+import Notifies from "../components/Notifies";
 
-interface NotificationProps {
-  route: {
-    params: {
-      tabState: number;
-    };
-  };
-}
 
-const Notifications: React.FC<NotificationProps> = ({ route }) => {
-  const [activeTab, setActiveTab] = useState<number>(0);
+const Message = () => {
+
   const navigation = useNavigation();
 
-  useLayoutEffect(() => {
-    if(route.params !== undefined) {
-      setActiveTab(route.params.tabState);
-    } else {
-      setActiveTab(0);
-    }
-  }, [route?.params?.tabState]);
 
   return (
     <SafeAreaView
@@ -43,11 +29,11 @@ const Notifications: React.FC<NotificationProps> = ({ route }) => {
         flex: 1,
       }}
     >
-      <View style={{ marginHorizontal: 24, width: SCREEN_WIDTH }}>
+      <View style={{ width: SCREEN_WIDTH }}>
         {/* header */}
         <Pressable
           onPress={() => navigation.canGoBack() && navigation.goBack()}
-          style={{ flexDirection: "row", alignItems: "center" }}
+          style={{ flexDirection: "row", alignItems: "center", marginLeft: 24 }}
         >
           <Image
             source={icons.back}
@@ -65,7 +51,7 @@ const Notifications: React.FC<NotificationProps> = ({ route }) => {
               marginLeft: 16,
             }}
           >
-            Notifications
+            Messages
           </Text>
         </Pressable>
 
@@ -76,20 +62,21 @@ const Notifications: React.FC<NotificationProps> = ({ route }) => {
             alignItems: "center",
           }}
         >
-          <NotificationsTabs
+          {/* Notifications scheduled for later versions, based on unprovided information */}
+          {/* <NotificationsTabs
             activeTab={activeTab}
             setActiveTab={setActiveTab}
-          />
+          /> */}
         </View>
 
-        <View style={{ width: SCREEN_WIDTH - 48 }}>
-          {activeTab === 0 ? <Notifies /> : <Messages />}
+        <View style={{ width: SCREEN_WIDTH, alignItems: "center" }}>
+          <Messages />
         </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default memo(Notifications);
+export default memo(Message);
 
 const styles = StyleSheet.create({});

@@ -15,8 +15,21 @@ import { icons } from "../../../assets/icons";
 import { SCREEN_WIDTH, colors } from "../../components/DEFAULTS";
 import { ChefChart, RunningOrdersCard } from "../../components";
 import { Actionsheet, useDisclose } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { DrawerNavigationProp } from "@react-navigation/drawer";
 
-const Dashboard = () => {
+type RootParamList = {
+  // ... your routes here
+};
+
+
+type NavigationProp = DrawerNavigationProp<RootParamList>;
+
+type Props = {
+  navigation: NavigationProp;
+};
+
+const Dashboard: React.FC<Props> = ({ navigation }) => {
   const { isOpen, onOpen, onClose } = useDisclose();
   const {
     isOpen: isOpenOrder,
@@ -24,11 +37,12 @@ const Dashboard = () => {
     onClose: onCloseOrder,
   } = useDisclose();
 
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#F7F8F9" }}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar barStyle={"dark-content"} backgroundColor={"#ffffff"} />
-        {/* Header for Chef Home */}
+        {/* Header for Driver Dashboard */}
         <View style={{ paddingHorizontal: 24, marginBottom: 24 }}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -63,13 +77,15 @@ const Dashboard = () => {
               </View>
             </Pressable>
 
-            <Image
-              source={images.myProfile}
-              style={{
-                width: 45,
-                height: 45,
-              }}
-            />
+            <Pressable onPress={() => navigation.openDrawer()}>
+              <Image
+                source={images.myProfile}
+                style={{
+                  width: 45,
+                  height: 45,
+                }}
+              />
+            </Pressable>
           </View>
         </View>
 
@@ -226,25 +242,27 @@ const Dashboard = () => {
           </View>
         </View>
 
-        <Pressable
-          style={{
-            backgroundColor: colors.primaryBg,
-            borderRadius: 12,
-            paddingVertical: 3,
-            width: "100%",
-          }}
-          onPress={() => alert("Offline")}
-        >
-          <Text
+        <View style={{ width: "100%", alignItems: "center", marginTop: 24 }}>
+          <Pressable
             style={{
-              fontFamily: "SemiBold-Sen",
-              color: colors.white,
-              textAlign: "center",
+              backgroundColor: colors.primaryBg,
+              borderRadius: 12,
+              paddingVertical: 14,
+              width: SCREEN_WIDTH - 48,
             }}
+            onPress={() => alert("Offline")}
           >
-            Go Offline
-          </Text>
-        </Pressable>
+            <Text
+              style={{
+                fontFamily: "SemiBold-Sen",
+                color: colors.white,
+                textAlign: "center",
+              }}
+            >
+              Go Offline
+            </Text>
+          </Pressable>
+        </View>
 
         <View style={{ height: 100 }} />
 

@@ -1,16 +1,17 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { SCREEN_WIDTH, colors } from "../DEFAULTS";
-import Notifications from "../../screens/Chef/Notifications";
-import Messages from "./Messages";
+
 
 interface NotificationProps {
   activeTab: number;
   setActiveTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const NotificationsTabs: React.FC<NotificationProps> = ({ activeTab, setActiveTab }) => {
-  
+const NotificationsTabs: React.FC<NotificationProps> = ({
+  activeTab,
+  setActiveTab,
+}) => {
   return (
     <View
       style={{
@@ -60,7 +61,7 @@ const NotificationsTabs: React.FC<NotificationProps> = ({ activeTab, setActiveTa
             color: activeTab === 1 ? colors.primaryBg : "#CED7DF",
           }}
         >
-          Messages(3)
+          Messages
         </Text>
       </Pressable>
     </View>

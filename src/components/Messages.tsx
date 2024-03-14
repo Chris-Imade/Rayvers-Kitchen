@@ -7,11 +7,11 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { SCREEN_HEIGHT, SCREEN_WIDTH, colors } from "../DEFAULTS";
+import { SCREEN_HEIGHT, SCREEN_WIDTH, colors } from "./DEFAULTS";
 import { useNavigation } from "@react-navigation/native";
-import { images } from "../../../assets/images";
+import { images } from "../../assets/images";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/store";
+import { RootState } from "../Redux/store";
 import { ScrollView } from "react-native";
 import {
   GradientProps,
@@ -19,12 +19,12 @@ import {
 } from "react-native-dynamic-skeletons";
 import { LinearGradient } from "expo-linear-gradient";
 import { RefreshControl } from "react-native-gesture-handler";
-import { generateRandomNumber } from "../../utils/idGenerator";
-import socket from "../../utils/socket";
-import { ChatRoom } from "../../../type";
-import { getDateAndTime } from "../../utils/isoStringToDate";
-import { updateChats } from "../../Redux/Splice/AppSplice";
-import { truncTxt } from "../../utils/truncate";
+import { generateRandomNumber } from "../utils/idGenerator";
+import socket from "../utils/socket";
+import { ChatRoom } from "../../type";
+import { getDateAndTime } from "../utils/isoStringToDate";
+import { updateChats } from "../Redux/Splice/AppSplice";
+import { truncTxt } from "../utils/truncate";
 
 const Gradient = (props: GradientProps) => <LinearGradient {...props} />;
 
@@ -76,58 +76,6 @@ const Messages = () => {
       setHotMessages(rooms);
     });
   }, [socket]);
-
-  // console.log('hotMessages: ', hotMessages);
-
-  //👇🏻 Dummy list of rooms
-  // const rooms = [
-  //   {
-  //     id: "1",
-  //     name: "David Bryam",
-  //     profilePic: images.msg2,
-  //     messages: [
-  //       {
-  //         id: "1a",
-  //         text: "Hello guys, welcome!",
-  //         time: "07:50",
-  //         user: "Chris Imade",
-  //         read: false,
-  //         profilePic: images.msg1,
-  //       },
-  //       {
-  //         id: "1b",
-  //         text: "Hi Chris, thank you! 😇",
-  //         time: "08:50",
-  //         user: "David Bryam",
-  //         read: false,
-  //         profilePic: images.msg2,
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "Jonathan Miller",
-  //     profilePic: images.msg3,
-  //     messages: [
-  //       {
-  //         id: "2a",
-  //         text: "Guys, who's awake? 🙏🏽",
-  //         time: "12:50",
-  //         user: "Chris Imade",
-  //         read: false,
-  //         profilePic: images.msg1,
-  //       },
-  //       {
-  //         id: "2b",
-  //         text: "What's up? 🧑🏻‍💻",
-  //         time: "03:50",
-  //         user: "Jonathan Miller",
-  //         read: false,
-  //         profilePic: images.msg3,
-  //       },
-  //     ],
-  //   },
-  // ];
 
   return (
     <View
@@ -206,10 +154,11 @@ const Messages = () => {
                     style={{
                       width: 50,
                       height: 50,
-                      borderRadius: 50 / 2,
+                      borderRadius: 10000,
                       position: "relative",
                       marginRight: 16,
                     }}
+                    resizeMode="cover"
                   >
                     <View
                       style={{
@@ -243,11 +192,11 @@ const Messages = () => {
                         color: colors.primaryTxt,
                       }}
                     >
-                      {
-                        truncTxt(hotMessages[index]?.messages[
+                      {truncTxt(
+                        hotMessages[index]?.messages[
                           hotMessages[index]?.messages.length - 1
-                        ]?.text)
-                      }
+                        ]?.text
+                      )}
                     </Text>
                   </View>
                 </View>

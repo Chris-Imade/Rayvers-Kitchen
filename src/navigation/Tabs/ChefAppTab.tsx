@@ -123,7 +123,7 @@ const ChefAppTab = () => {
               />
             ),
         }}
-        name="ProfileStackScreen"
+        name="ProfileStack"
         component={ChefProfileStack}
       />
     </Tabs.Navigator>

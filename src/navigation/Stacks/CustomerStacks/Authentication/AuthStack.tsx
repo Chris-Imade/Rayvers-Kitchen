@@ -15,7 +15,7 @@ const StackAuth = createNativeStackNavigator();
 const AuthStack = () => {
   return (
     <StackAuth.Navigator
-      initialRouteName="Onboard"
+      initialRouteName="Login"
       screenOptions={() => ({ headerShown: false })}
     >
       <StackAuth.Screen name="Onboard" component={Onboard} />

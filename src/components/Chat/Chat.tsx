@@ -18,6 +18,8 @@ const Chat: React.FC<ChatProp> = () => {
   const userProfile = useSelector((state: RootState) => state.data.userProfile);
   const localChat = useSelector((state: RootState) => state.data.chats);
 
+  console.log("userProfile: ", userProfile);
+
   return (
     <View
       style={{
@@ -45,12 +47,12 @@ const Chat: React.FC<ChatProp> = () => {
                 style={{
                   width: "100%",
                   marginRight: status ? 0 : 0,
-                  marginLeft: !status ? 50 : 0,
+                  marginLeft: !status ? 65 : 0,
                 }}
               >
                 <View
                   style={{
-                    backgroundColor: status ? '#07080F' : "#F0F5FA",
+                    backgroundColor: status ? '#07080F' : '#181C2E',
                     maxWidth: "60%",
                     minWidth: 50,
                     borderRadius: 10,
@@ -59,7 +61,7 @@ const Chat: React.FC<ChatProp> = () => {
                     paddingBottom: 40
                   }}
                 >
-                  {!status && (
+                  {status && (
                     <Image
                       source={read ? icons.read : icons.unread}
                       style={{
@@ -71,12 +73,12 @@ const Chat: React.FC<ChatProp> = () => {
                       }}
                     />
                   )}
-                  <View style={{ backgroundColor: '#181C2E', borderRadius: 5, padding: 5 }}>
+                  <View style={{ backgroundColor: status ? '#181C2E' : '#07080F', borderRadius: 5, padding: 5 }}>
                     <Text
                       style={{
                         fontSize: 14,
                         fontFamily: "Regular-Sen",
-                        color: !status ? colors.primaryTxt : colors.white,
+                        color: colors.grayText,
                         position: "relative",
                       }}
                     >

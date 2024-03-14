@@ -10,6 +10,8 @@ const HomeHeader = () => {
   const carts = useSelector((state: RootState) => state.data.carts);
   const userAddress = useSelector((state: RootState) => state.data.userAddress);
   const address = useSelector((state: RootState) => state.data.address);
+
+  console.log('userAddresss: ', userAddress, 'address: ', address);
   
   const navigation = useNavigation();
 
@@ -74,8 +76,7 @@ const HomeHeader = () => {
                   color: colors.secondaryTxt,
                 }}
               >
-                {userAddress && address === null && `${userAddress.city}, ${userAddress.country}`}
-                {address !== null ? address.address : 'Add your address'}
+                {userAddress !== null ? `${userAddress.city}, ${userAddress.country}` : 'Add your address'}
               </Text>
 
               <Image

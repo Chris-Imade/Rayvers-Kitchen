@@ -34,7 +34,7 @@ export { default as FoodList } from "./Chef/FoodList";
 export { default as AddNewFood } from "./Chef/AddNewFood";
 export { default as ChefProfile } from "./Chef/Profile";
 export { default as WithdrawSuccess } from "./Chef/WithdrawSuccess";
-export { default as Notification } from "./Chef/Notifications";
+export { default as Notification } from "./Message";
 export { default as ChefReviews } from "./Chef/Reviews";
 export { default as ChefDriversList } from "./Chef/DriversList";
 export { default as ChefFoodDetails } from "./Chef/FoodDetails";

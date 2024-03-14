@@ -24,11 +24,13 @@ const ProfileStack = () => {
     >
       <StackProfile.Screen name="ProfileScreen" component={Profile} />
       <StackProfile.Screen name="Address" component={Address} />
+      {/* @ts-ignore */}
       <StackProfile.Screen name="AddNewAddress" component={AddNewAddress} />
       <StackProfile.Screen name="EditProfile" component={EditProfile} />
       <StackProfile.Screen name="PersonalInfo" component={PersonalInfo} />
       <StackProfile.Screen name="Favorite" component={Favorite} />
       <StackProfile.Screen name="CartScreen" component={Cart} />
+      {/* @ts-ignore */}
       <StackProfile.Screen name="Notification" component={Notification} />
       <StackProfile.Screen name="Payment" component={Payment} />
       <StackProfile.Screen name="AddCard" component={AddCard} />

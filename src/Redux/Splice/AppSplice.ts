@@ -109,7 +109,7 @@ export const appSlice = createSlice({
         state.availableCards = newCard;
       }
     },
-    setUserType: (state, action: PayloadAction<USER_TYPE>) => {
+    setUserType: (state, action: PayloadAction<USER_TYPE | null>) => {
       state.userType = action.payload;
     },
     setEmail: (state, action: PayloadAction<string>) => {
@@ -257,7 +257,7 @@ export const appSlice = createSlice({
           (item) => item.id !== action.payload
         );
     },
-    setUserId: (state, action: PayloadAction<number>) => {
+    setUserId: (state, action: PayloadAction<number | null>) => {
       state.userId = action.payload;
     },
     setUserInfo: (state, action: PayloadAction<UserInfo>) => {
@@ -284,7 +284,7 @@ export const appSlice = createSlice({
     resetCart: (state) => {
       state.carts = null;
     },
-    setUserProfile: (state, action: PayloadAction<ProfileType>) => {
+    setUserProfile: (state, action: PayloadAction<ProfileType | null>) => {
       state.userProfile = action.payload;
     },
     updateChatMsg: (state, action: PayloadAction<string>) => {

@@ -59,9 +59,7 @@ const SearchResult = () => {
   const searchResult =
     searchQuery.length === 0 ? dishes : handleSearch(searchQuery);
   const searchResultRestaurant =
-    searchQuery.length === 0
-      ? restaurant
-      : handleRestaurantSearch(searchQuery);
+    searchQuery.length === 0 ? restaurant : handleRestaurantSearch(searchQuery);
 
   return (
     <SafeAreaView
@@ -75,10 +73,16 @@ const SearchResult = () => {
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ width: SCREEN_WIDTH - 48, height: SCREEN_HEIGHT }}
+        style={{ 
+          height: SCREEN_HEIGHT,
+          width: SCREEN_WIDTH,
+        }}
+        contentContainerStyle={{
+          alignItems: 'center'
+        }}
       >
         {/* Header */}
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", width: SCREEN_WIDTH - 48 }}>
           {/* Left */}
           <View
             style={{
@@ -187,6 +191,7 @@ const SearchResult = () => {
             color: colors.primaryTxt,
             marginVertical: 24,
             alignSelf: "flex-start",
+            marginLeft: 24,
           }}
         >
           Dishes
@@ -242,6 +247,7 @@ const SearchResult = () => {
             justifyContent: "space-between",
             alignItems: "center",
             marginTop: 32,
+            width: SCREEN_WIDTH - 48
           }}
         >
           <Text
@@ -256,13 +262,13 @@ const SearchResult = () => {
         </View>
 
         {/* Open Restaurants */}
-        <View style={{ marginBottom: 100 }}>
+        <View style={{ marginBottom: 100, width: SCREEN_WIDTH - 48 }}>
           {searchResultRestaurant?.length === 0 ? (
             <View>
               <View
                 style={{
                   padding: 24,
-                  width: SCREEN_WIDTH - 48,
+                  // width: SCREEN_WIDTH - 48,
                   borderWidth: 3,
                   borderStyle: "dashed",
                   borderColor: colors.primaryTxt,
@@ -281,11 +287,13 @@ const SearchResult = () => {
                 </Text>
               </View>
             </View>
-          ) : searchResultRestaurant?.map((item, index) => (
+          ) : (
+            searchResultRestaurant?.map((item, index) => (
               <View key={`${item.id}-${index}`}>
                 <RestaurantCard restaurant={item} />
               </View>
-            ))}
+            ))
+          )}
         </View>
       </ScrollView>
       {/* Modal Components */}

@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../Redux/store";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import DrawerNavigation from "./Drawer/Drawer";
-import { ChefAuthStack, CustomerAuthStack, DriverStack } from "./Stacks";
-import { Onboard, RouteSelection } from "../screens";
+import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../Redux/store'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DrawerNavigation from './Drawer/Drawer';
+import { ChefAuthStack, CustomerAuthStack, DriverStack } from './Stacks';
+import { Onboard, RouteSelection } from '../screens';
 
 const AppStack = createNativeStackNavigator();
 

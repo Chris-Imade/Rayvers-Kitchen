@@ -10,8 +10,13 @@ import {
 import React, { memo } from "react";
 import { icons } from "../../../assets/icons";
 import { SCREEN_WIDTH, colors } from "../../components/DEFAULTS";
+import { useDispatch } from "react-redux";
+import { setAccessToken, setUserAddress, setUserId } from "../../Redux/Splice/AppSplice";
 
 const Profile = () => {
+  
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView>
@@ -274,9 +279,11 @@ const Profile = () => {
             }}
           >
             <Pressable
-              onPress={() =>
-                alert("Implement navigation to user reviews here...")
-              }
+              onPress={() => {
+                dispatch(setAccessToken(null));
+                dispatch(setUserId(null));
+                dispatch(setUserAddress(null));
+              }}
               style={{
                 flexDirection: "row",
                 justifyContent: "space-between",

@@ -1,20 +1,22 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { EditProfile, ProfileInfo } from "../../../screens";
+import Dashboard from "../../../screens/Driver/Dashboard";
+import { DriverProfile } from "../../../screens/Driver";
+import { EditProfile } from "../../../screens";
 
 
-const RootProfileStack = createNativeStackNavigator();
+const DriverProfileStack = createNativeStackNavigator();
 
 const ProfileStack = () => {
   return (
-    <RootProfileStack.Navigator
-      initialRouteName="Profile"
+    <DriverProfileStack.Navigator
+      initialRouteName="DriverProfile"
       screenOptions={{ headerShown: false }}
     >
-      <RootProfileStack.Screen name="ProfileInfo" component={ProfileInfo} />
-      <RootProfileStack.Screen name="EditProfile" component={EditProfile} />
-    </RootProfileStack.Navigator>
+      <DriverProfileStack.Screen name="DriverProfile" component={DriverProfile} />
+      <DriverProfileStack.Screen name="DriverEditProfile" component={EditProfile} />
+    </DriverProfileStack.Navigator>
   );
 };
 

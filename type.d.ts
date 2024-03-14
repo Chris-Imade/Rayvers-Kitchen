@@ -40,7 +40,7 @@ interface Restaurant {
   name: string;
   description: string;
   ratings: string;
-  image: ImageSourcePropType;
+  image: string;
   id: number;
   address?: string;
 }
